@@ -30,3 +30,8 @@ int main(){
     printf("-------------------------------------------------\n");
     yylex();
 }
+
+
+flex table.l
+gcc lex.yy.c -o table.exe
+table.exe

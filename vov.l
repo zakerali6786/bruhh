@@ -12,3 +12,8 @@ int main(){
     yylex();
     return 0;
 }
+
+
+flex table.l
+gcc lex.yy.c -o table.exe
+table.exe

@@ -29,3 +29,7 @@ print("Identifiers:",i)
 print("Operators:",o)
 print("Special chars:",s)
 print("Lines:",code.count('\n'))
+
+
+gedit lexana.py
+python3 lexana.py
