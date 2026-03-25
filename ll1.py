@@ -104,3 +104,6 @@ for nt in grammar:
         else:
             print("{:<12}".format(""), end="")
     print()
+
+gedit lexana.py
+python3 lexana.py

@@ -39,3 +39,7 @@ if E() and i == len(s):
     print("Accepted")
 else:
     print("Rejected")
+
+
+gedit lexana.py
+python3 lexana.py
