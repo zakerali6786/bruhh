@@ -1,0 +1,27 @@
+import numpy as np
+import pandas as pd
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.preprocessing import StandardScaler
+
+data = pd.read_csv('diabetes.csv') 
+ 
+# Step 2: Data Preprocessing 
+# Separate features (X) and target label (y) 
+X = data.drop('Outcome', axis=1) 
+y = data['Outcome'] 
+
+# Handle missing values (if any) - optional step 
+X.fillna(X.mean(), inplace=True)
+ 
+# Standardize the features 
+scaler = StandardScaler() 
+X = scaler.fit_transform(X)
+ 
+def polynomial_regression(X, y, degree=3): 
+    poly = PolynomialFeatures(degree) 
+    X_poly = poly.fit_transform(X) 
+    theta = np.linalg.inv(X_poly.T.dot(X_poly)).dot(X_poly.T).dot(y) 
+    return theta
+
+theta = polynomial_regression(X, y)
+print(theta)

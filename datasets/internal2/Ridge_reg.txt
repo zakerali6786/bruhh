@@ -1,0 +1,17 @@
+import pandas as pd
+from sklearn.linear_model import Ridge
+
+data = pd.read_csv('Social_Network_Ads.csv') 
+ 
+# Step 2: Data Preprocessing 
+# Separate features (X) and target label (y) 
+X = data.drop('Gender', axis=1) 
+y = data['Purchased'] 
+
+def ridge_regression(X, y, alpha=1.0): 
+    ridge = Ridge(alpha=alpha) 
+    ridge.fit(X, y) 
+    return ridge.coef_
+
+p = ridge_regression(X, y)
+print(p)

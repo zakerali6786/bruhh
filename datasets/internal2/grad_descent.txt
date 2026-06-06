@@ -1,0 +1,41 @@
+import numpy as np
+import sys
+sys.path.append('C:\\Users\\91703\\AppData\\Local\\Programs\\Python\\Python39\\Lib\\site-packages') # Use the actual path
+import pandas as pd
+from sklearn.model_selection import train_test_split 
+from sklearn.preprocessing import StandardScaler 
+from sklearn.linear_model import LogisticRegression 
+from sklearn.metrics import accuracy_score, precision_score, recall_score 
+
+def gradient_descent(X, y, alpha=0.01, iterations=1000): 
+    m, n = X.shape 
+    theta = np.zeros(n) 
+    cost_history = [] 
+ 
+    for _ in range(iterations): 
+        predictions = X.dot(theta) 
+        errors = predictions - y 
+        gradient = (1/m) * X.T.dot(errors) 
+        theta -= alpha * gradient 
+        cost = (1/(2*m)) * np.sum(errors**2) 
+        cost_history.append(cost) 
+ 
+    return theta, cost_history
+
+data = pd.read_csv('diabetes.csv')
+
+X = data.drop('Outcome', axis=1) 
+y = data['Outcome'] 
+
+# Handle missing values (if any) - optional step 
+X.fillna(X.mean(), inplace=True)
+ 
+# Standardize the features 
+scaler = StandardScaler() 
+X = scaler.fit_transform(X) 
+ 
+# Split the dataset into training and testing sets 
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42) 
+
+THETA, COST_HISTORY = gradient_descent(X_train,y_train)
+print(THETA)
